@@ -1,0 +1,116 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+    background-color: #f4f4f4; /* Default background */
+    color: #333;
+}
+
+#app-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 20px;
+}
+
+.web-title {
+    margin: 0;
+    font-size: 1.8em;
+}
+
+#add-novel-button {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+#add-novel-button:hover {
+    background-color: #0056b3;
+}
+
+.bookshelf-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Responsive grid */
+    gap: 20px;
+}
+
+.novel-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover */
+    overflow: hidden; /* Ensure content fits */
+}
+
+.novel-card:hover {
+    transform: scale(1.05); /* Enlarge on hover */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.novel-cover {
+    width: 100%;
+    height: 200px; /* Fixed height for covers */
+    object-fit: cover; /* Scale image nicely */
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.novel-title {
+    font-size: 1em;
+    font-weight: bold;
+    margin: 0;
+    white-space: nowrap; /* Prevent title wrapping */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Add ellipsis if title is too long */
+}
+
+/* --- Delete Button Style --- START */
+.delete-novel-button {
+    position: absolute; /* Position relative to the card */
+    top: 5px;
+    right: 5px;
+    background-color: rgba(255, 0, 0, 0.7); /* Semi-transparent red */
+    color: white;
+    border: none;
+    border-radius: 50%; /* Circular button */
+    width: 24px;
+    height: 24px;
+    font-size: 12px;
+    line-height: 24px; /* Center text vertically */
+    text-align: center;
+    cursor: pointer;
+    opacity: 0; /* Hidden by default */
+    transition: opacity 0.3s ease;
+    z-index: 10; /* Ensure it's above other elements */
+}
+
+.novel-card:hover .delete-novel-button {
+    opacity: 1; /* Show on hover */
+}
+
+.delete-novel-button:hover {
+    background-color: rgba(200, 0, 0, 0.9); /* Darker red on hover */
+}
+/* --- Delete Button Style --- END */
+
+#no-novels-message {
+    grid-column: 1 / -1; /* Span full width if grid is empty */
+    text-align: center;
+    color: #666;
+    font-size: 1.1em;
+    margin-top: 30px;
+}

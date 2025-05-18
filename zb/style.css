@@ -1,0 +1,370 @@
+html {
+    scroll-behavior: smooth; /* Add smooth scrolling */
+}
+
+:root {
+    --primary-color: #4a90e2; /* A modern blue */
+    --secondary-color: #f8f9fa; /* Light grey background */
+    --text-color: #333;
+    --border-color: #dee2e6;
+    --hover-bg-color: #e9ecef;
+    --sidebar-bg: #ffffff;
+    --header-bg: #ffffff;
+    --content-bg: #ffffff;
+    --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* General Body & Layout - Simplified Grid for Reader */
+body {
+    display: flex; /* Change to flex for simpler layout */
+    flex-direction: column; /* Stack header, then content */
+    min-height: 100vh; /* Ensure body takes full height */
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+/* Header Styling */
+.header {
+    /* grid-area: header; */ /* Removed grid area */
+    background-color: var(--header-bg);
+    padding: 0 25px; /* Slightly more padding */
+    height: 60px; /* Keep fixed height */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: var(--box-shadow);
+    z-index: 10;
+    flex-shrink: 0; /* Prevent header from shrinking */
+}
+
+/* Reader Container - Flex layout for Sidebar + Content */
+.reader-container { /* New container for sidebar and main content */
+    display: flex;
+    flex-grow: 1; /* Allow this container to fill remaining space */
+    overflow: hidden; /* Prevent container overflow */
+}
+
+/* Sidebar Styling */
+.sidebar {
+    /* grid-area: sidebar; */ /* Removed grid area */
+    background-color: var(--sidebar-bg);
+    padding: 20px;
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    width: 280px; /* Slightly wider sidebar */
+    flex-shrink: 0; /* Prevent sidebar from shrinking */
+    box-shadow: var(--box-shadow);
+    overflow-y: auto; /* Allow sidebar content to scroll */
+}
+
+/* Main Content Area */
+.main-content {
+    /* grid-area: main-content; */ /* Removed grid area */
+    overflow-y: auto; /* Allow scrolling within main content */
+    padding: 20px;
+    flex-grow: 1; /* Allow main content to fill available space */
+    display: flex; /* Use flexbox for children */
+    flex-direction: column; /* Stack children vertically */
+    background-color: var(--content-bg); /* Apply background here */
+}
+
+#novel-content {
+    white-space: pre-wrap; /* Preserve whitespace and wrap lines */
+    word-wrap: break-word; /* Ensure long words break */
+    font-size: 1.1em; /* Slightly larger font for readability */
+    line-height: 1.6; /* Improve line spacing */
+    padding: 30px 40px; /* More horizontal padding */
+    overflow-y: auto;
+    background-color: var(--content-bg);
+    flex-grow: 1; /* Allow content to take remaining width */
+}
+
+/* Novel Content Styling */
+.novel-content {
+    max-width: 900px; /* Increase max-width slightly */
+    margin: 0 auto;
+    font-size: 1.1em;
+    line-height: 1.8;
+    padding-bottom: 50vh;
+}
+
+/* TOC List Styling */
+#toc-list li {
+    padding: 10px 12px; /* Increase padding */
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    border-radius: 4px;
+    margin-bottom: 4px; /* Slightly more space */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border: 1px solid transparent; /* Add border for active state */
+}
+
+#toc-list li:hover {
+    background-color: var(--hover-bg-color);
+}
+
+#toc-list li.active { /* Style for active chapter */
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: 500;
+    border-color: var(--primary-color);
+}
+
+/* Settings Area */
+.settings-entry {
+    margin-top: auto;
+    padding-top: 20px; /* More padding */
+    border-top: 1px solid var(--border-color);
+}
+
+/* Back Button Styling */
+#back-to-bookshelf-button {
+    padding: 8px 15px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    font-size: 0.9em;
+}
+
+#back-to-bookshelf-button:hover {
+    background-color: #3a80d2; /* Darker shade on hover */
+}
+
+/* Remove grid-template-areas from body */
+/* body grid properties removed above */
+
+/* Ensure guide styles are still functional */
+#guide-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+    display: flex; /* Use flexbox for centering */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Ensure it's on top */
+    display: none; /* Hidden by default */
+}
+
+.guide-content {
+    background-color: #fff;
+    padding: 30px 40px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    max-width: 500px;
+    text-align: left;
+    position: relative;
+}
+
+.guide-content h2 {
+    margin-top: 0;
+    color: #333;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.guide-content p {
+    line-height: 1.6;
+    margin-bottom: 15px;
+    color: #555;
+}
+
+.guide-content ul {
+    list-style: disc;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+#close-guide {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    cursor: pointer;
+    color: #888;
+    transition: color 0.2s ease;
+}
+
+#close-guide:hover {
+    color: #333;
+}
+
+/* Bookshelf Styles */
+.bookshelf-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Responsive grid */
+    gap: 20px;
+    padding: 20px;
+}
+
+.novel-card {
+    background-color: var(--secondary-bg);
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: var(--box-shadow);
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    overflow: hidden; /* Ensure content fits */
+}
+
+.novel-card:hover {
+    transform: translateY(-5px) scale(1.03); /* Lift and slightly enlarge on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.novel-cover {
+    width: 100%;
+    height: 200px; /* Fixed height for covers */
+    object-fit: cover; /* Scale image nicely */
+    border-radius: 4px;
+    margin-bottom: 10px;
+    background-color: #eee; /* Placeholder background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #aaa;
+    font-size: 0.9em;
+}
+
+.novel-card h4 {
+    margin: 0;
+    font-size: 1em;
+    color: var(--text-color);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Ellipsis for long titles */
+}
+
+#add-novel-button {
+    padding: 8px 15px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    margin-left: auto; /* Push to the right */
+    margin-right: 20px; /* Spacing from edge */
+}
+
+#add-novel-button:hover {
+    background-color: #0056b3;
+}
+
+#no-novels-message {
+    grid-column: 1 / -1; /* Span full width */
+    text-align: center;
+    color: #888;
+    margin-top: 30px;
+    font-size: 1.1em;
+}
+
+#back-to-bookshelf {
+    padding: 8px 15px;
+    background-color: #6c757d; /* A neutral color */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    display: block; /* Make it block level */
+    width: fit-content; /* Adjust width to content */
+    margin-top: 10px;
+}
+
+#back-to-bookshelf:hover {
+    background-color: #5a6268;
+}
+
+/* Hide reader view elements when bookshelf is active */
+#bookshelf-view.active ~ #reader-view {
+    display: none;
+}
+
+/* Hide bookshelf view elements when reader is active */
+#reader-view.active ~ #bookshelf-view {
+    display: none;
+}
+
+
+/* Dark Mode Styles (Optional - can be expanded later) */
+body.dark-mode {
+    background-color: #333;
+    color: #f0f0f0;
+}
+
+body.dark-mode .header,
+body.dark-mode .sidebar,
+body.dark-mode .main-content,
+body.dark-mode .settings-entry,
+body.dark-mode .guide-content {
+    background-color: #444;
+    color: #f0f0f0;
+    border-color: #555;
+}
+
+body.dark-mode .web-title,
+body.dark-mode .sidebar h3,
+body.dark-mode .settings-entry label,
+body.dark-mode .guide-content h2 {
+    color: #eee;
+}
+
+body.dark-mode .novel-info,
+body.dark-mode .guide-content p {
+    color: #ccc;
+}
+
+body.dark-mode #toc-list li:hover {
+    background-color: #555;
+}
+
+body.dark-mode #toc-list li.active {
+    background-color: #0056b3; /* Adjust active color for dark mode */
+    color: white;
+}
+
+body.dark-mode #close-guide {
+    color: #aaa;
+}
+
+body.dark-mode #close-guide:hover {
+    color: #eee;
+}
+
+body.dark-mode input[type="color"] {
+    border-color: #666;
+}
+
+body.dark-mode ::-webkit-scrollbar {
+    width: 8px;
+}
+
+body.dark-mode ::-webkit-scrollbar-track {
+    background: #555;
+}
+
+body.dark-mode ::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 4px;
+}
+
+body.dark-mode ::-webkit-scrollbar-thumb:hover {
+    background-color: #aaa;
+}

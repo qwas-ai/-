@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的书架</title>
+    <link rel="stylesheet" href="home.style.css">
+</head>
+<body>
+    <div id="app-container"> <!-- Main container -->
+        <header class="header">
+            <h1 class="web-title">我的书架</h1>
+            <button id="add-novel-button">添加新书</button> <!-- Button to trigger file inputs -->
+        </header>
+        <main id="bookshelf-grid" class="bookshelf-grid">
+            <!-- Novel cards will be dynamically added here -->
+            <p id="no-novels-message" style="display: none;">书架是空的，点击“添加新书”来添加本地小说。</p>
+        </main>
+        <!-- Hidden file inputs -->
+        <input type="file" id="add-novel-file" accept=".txt" style="display: none;">
+        <input type="file" id="add-cover-file" accept="image/*" style="display: none;">
+    </div>
+
+    <script src="home.script.js"></script>
+</body>
+</html>

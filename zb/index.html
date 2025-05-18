@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小说阅读</title> <!-- Changed title -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <!-- Use the button style from style.css -->
+        <button id="back-to-bookshelf-button">返回书架</button>
+        <h1 id="reader-title" class="web-title">小说阅读</h1>
+        <div id="novel-info-reader" class="novel-info">未加载小说</div>
+    </header>
+
+    <div class="reader-container"> <!-- Wrapper for flex layout -->
+        <aside class="sidebar">
+            <h3>目录</h3>
+            <div class="novel-directory">
+                <ul id="toc-list">
+                    <!-- Table of Contents will be populated here -->
+                </ul>
+            </div>
+            <div class="settings-entry">
+                <h3>设置</h3>
+                <label for="bg-color">背景颜色:</label>
+                <input type="color" id="bg-color" value="#f8f9fa"> <!-- Default to light grey matching CSS variable -->
+                <!-- File input removed as novel is loaded from home page -->
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <div id="novel-content" class="novel-content">
+                <p>请从书架选择一本小说开始阅读。</p>
+            </div>
+        </main>
+    </div> <!-- Close reader-container -->
+
+    <!-- Guide Overlay -->
+    <div id="guide-overlay">
+        <div class="guide-content">
+            <button id="close-guide">&times;</button>
+            <h2>阅读器使用指南</h2>
+            <p>欢迎使用小说阅读器！</p>
+            <ul>
+                <li>从左侧“目录”选择章节跳转。</li>
+                <li>使用“背景颜色”选择器调整阅读背景。</li>
+                <li>点击左上角的“返回书架”回到主页。</li>
+            </ul>
+            <p>点击右上角的关闭按钮或按 Esc 键关闭此指南。</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
